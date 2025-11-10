@@ -1,4 +1,4 @@
-from random import choice, randint
+import random
 
 import pygame
 
@@ -51,8 +51,9 @@ class GameObject:
                             По умолчанию - центр экрана.
             body_color (tuple): Цвет объекта в формате RGB.
         """
-        self.position = position or ((SCREEN_WIDTH // 2),
-                                     (SCREEN_HEIGHT // 2))
+        self.position = position or (
+            (SCREEN_WIDTH // 2), (SCREEN_HEIGHT // 2)
+        )
         self.body_color = body_color
 
     def draw(self):
@@ -84,8 +85,8 @@ class Apple(GameObject):
 
         while True:
             new_position = (
-                randint(0, GRID_WIDTH - 1) * GRID_SIZE,
-                randint(0, GRID_HEIGHT - 1) * GRID_SIZE
+                random.randint(0, GRID_WIDTH - 1) * GRID_SIZE,
+                random.randint(0, GRID_HEIGHT - 1) * GRID_SIZE
             )
             if new_position not in snake_positions:
                 self.position = new_position
@@ -93,9 +94,13 @@ class Apple(GameObject):
 
     def draw(self):
         """Отрисовывает яблоко на игровой поверхности."""
-        rect = pygame.Rect(self.position, (GRID_SIZE, GRID_SIZE))
+        rect = pygame.Rect(
+            self.position, (GRID_SIZE, GRID_SIZE)
+        )
         pygame.draw.rect(screen, self.body_color, rect)
-        pygame.draw.rect(screen, BORDER_COLOR, rect, 1)
+        pygame.draw.rect(
+            screen, BORDER_COLOR, rect, 1
+        )
 
 
 class Snake(GameObject):
@@ -165,7 +170,7 @@ class Snake(GameObject):
         """Сбрасывает змейку в начальное состояние после столкновения."""
         self.length = 1
         self.positions = [self.position]
-        self.direction = choice([UP, DOWN, LEFT, RIGHT])
+        self.direction = random.choice([UP, DOWN, LEFT, RIGHT])
         self.next_direction = None
         self.last = None
 
