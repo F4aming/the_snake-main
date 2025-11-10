@@ -43,7 +43,7 @@ class GameObject:
         """
         self.position = position or (
             SCREEN_WIDTH // 2,
-            SCREEN_HEIGHT // 2
+            SCREEN_HEIGHT // 2,
         )
         self.body_color = body_color
 
@@ -114,6 +114,7 @@ class Snake(GameObject):
             (head[1] + dy * GRID_SIZE) % SCREEN_HEIGHT,
         )
 
+        # Проверка столкновения с собой
         if new_head in self.positions[2:]:
             self.positions = [new_head]
             self.length = 1
