@@ -95,7 +95,8 @@ class Apple(GameObject):
     def draw(self):
         """Отрисовывает яблоко на игровой поверхности."""
         rect = pygame.Rect(
-            self.position, (GRID_SIZE, GRID_SIZE)
+            self.position,
+            (GRID_SIZE, GRID_SIZE)
         )
         pygame.draw.rect(screen, self.body_color, rect)
         pygame.draw.rect(
